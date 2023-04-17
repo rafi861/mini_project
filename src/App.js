@@ -5,12 +5,16 @@ import './style/navbar.css'
 import { useEffect, useState,  } from 'react';
 import axios from 'axios';
 // import BasicExample from './Components/card';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+import MovieList from './Components/list';
+import './style/list.css'
+import ContentWithFiveItemsPerRow from './Components/card';
+import ImagesWithFiveItemsPerRow from './Components/card';
 
 function App() {
   const [movies, setMovies] = useState ([])
-  
+  // const [movi, setMovi] = useState ([])
   useEffect (() =>{
 axios({
   method: 'get',
@@ -26,26 +30,48 @@ setMovies(response.data.results)
       <div className='rafi'>
       <CollapsibleExample/>
       </div>
-      <div className='kartu'>
-        {movies.map((results, index) =>{
+      <MovieList/>
+<ContentWithFiveItemsPerRow/>
+<ImagesWithFiveItemsPerRow/>
+      <div>
+
+      {movies.map((results, index) =>{
+          // const imgs = 'https://image.tmdb.org/t/p/w500'
           return (
-<Card style={{ width: '18rem' }} className='' key={index}>
-      <Card.Img variant="top" src=' ' />
+            <div className='kartu'>
+              {/* <h1>{results.title}</h1> */}
+            </div>
+           )
+        })}
+      </div>
+      {/* <div className='kartu'>
+      
+ <Card style={{ width: '12rem' }} className='' key={index}>
+  <div>
+  <Card.Img variant="top" src={`${imgs+results.poster_path}`} />
+  </div>
       <Card.Body>       
-        <Card.Title>{results.title}</Card.Title>
-        <Card.Text>
+        <Card.Title>
+          {results.title}
+        
+        </Card.Title>
+        <Card.Text className='overview'>
           {results.overview}
         </Card.Text>
-        <div>{results.id}</div>
+        <div>
+          {results.id}
+          </div>
         <br></br>
-        <div>{results.popularity}</div> <br></br>
+        <div>
+          {results.popularity}
+        
+        </div> <br></br>
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
-    </Card>
-          )
-        })}
+    </Card> 
+          
       
-      </div>
+      </div> */}
     </div>
   );
 }

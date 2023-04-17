@@ -1,23 +1,42 @@
-// import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// function BasicExample() {
-    
-    
-//   return (
-//     <Card style={{ width: '18rem' }} className=''>
-//       <Card.Img variant="top" src="holder.js/100px180" />
-//       <Card.Body>
-        
-//         <Card.Title>Card Title</Card.Title>
-//         <Card.Text>
-//           Some quick example text to build on the card title and make up the
-//           bulk of the card's content.
-//         </Card.Text>
-//         <Button variant="primary">Go somewhere</Button>
-//       </Card.Body>
-//     </Card>
-//   );
-// }
+const ImagesWithFiveItemsPerRow = () => {
+  const [images, setImages] = useState([]);
 
-// export default BasicExample;
+  useEffect(() => {
+    // Mengambil data gambar dari TMDB API menggunakan axios
+    axios
+      .get('https://api.themoviedb.org/3/movie/popular', {
+        params: {
+          api_key: 'ce680bd26b6356bf5d8673b99e780e5406250817',
+          language: 'en-US',
+          page: 1,
+        },
+      })
+      .then((response) => {
+        setImages(response.data.results.slice(0, 5)); // Mengambil 5 gambar pertama
+      })
+      .catch((error) => {
+        console.error('Error fetching images:', error);
+      });
+  }, []);
+
+  return (
+    <div>
+      {/* <h1>Popular Movie Images</h1> */}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {images.map((image) => (
+          <img
+            key={image.id}
+            src={`https://image.tmdb.org/t/p/w300${image.poster_path}`}
+            alt={image.title}
+            style={{ width: '20%', height: 'auto', padding: '0.5rem', boxSizing: 'border-box' }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ImagesWithFiveItemsPerRow;
