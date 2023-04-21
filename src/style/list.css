@@ -3,15 +3,20 @@
     height:auto;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 0;
-    
+    justify-content: center;
+    text-align: center;
 }
 img{
     width: 210px;
     height: 210px;
-    margin: 60px;
-    margin-bottom: 200;
+    margin: 20px;
 }
 p{
     text-align: justify;
+}
+.image{
+
+}
+button{
+    
 }

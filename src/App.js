@@ -4,6 +4,7 @@ import CollapsibleExample from './Components/navbar';
 import './style/navbar.css'
 import { useEffect, useState,  } from 'react';
 import axios from 'axios';
+import Login from './Components/login';
 // import BasicExample from './Components/card';
 // import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
@@ -30,10 +31,13 @@ setMovies(response.data.results)
       <div className='rafi'>
       <CollapsibleExample/>
       </div>
+      <br></br>
+
       <MovieList/>
 <ContentWithFiveItemsPerRow/>
 <ImagesWithFiveItemsPerRow/>
-      <div>
+<Login/>
+ <div>
 
       {movies.map((results, index) =>{
           // const imgs = 'https://image.tmdb.org/t/p/w500'
